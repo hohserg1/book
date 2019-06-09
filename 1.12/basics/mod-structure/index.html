@@ -1,0 +1,438 @@
+<!doctype html><html lang="ru" class="no-js"><head>
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="x-ua-compatible" content="ie=edge"><meta name="description" content="Основные файлы любого Minecraft мода. Для чего они нужны и как их настроить."><link rel="canonical" href="https://mcmodding.ru/1.12/basics/mod-structure/"><meta name="lang:clipboard.copy" content="Копировать в буфер"><meta name="lang:clipboard.copied" content="Скопировано в буфер"><meta name="lang:search.language" content="ru, en"><meta name="lang:search.pipeline.stopwords" content="True"><meta name="lang:search.pipeline.trimmer" content="True"><meta name="lang:search.result.none" content="Совпадений не найдено"><meta name="lang:search.result.one" content="Найдено 1 совпадение"><meta name="lang:search.result.other" content="Найдено # совпадений"><meta name="lang:search.tokenizer" content="[\s\-]+"><link rel="shortcut icon" href="../../../favicon.png"><meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.3.1">
+
+    <meta property="og:image" content="https://mcmodding.ru/ogLogo.png" />
+<title>Структура мода - MC Modding Учебник</title>
+    <link rel="stylesheet" href="../../../assets/stylesheets/application.4031d38b.css"><link rel="stylesheet" href="../../../assets/stylesheets/application-palette.224b79ff.css"><meta name="theme-color" content="">
+
+    <!-- Font Awesome 5 -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" 
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" 
+          crossorigin="anonymous">
+
+    <!-- Contributors --> 
+    <link rel="stylesheet" href="../../../css/contributors/contributors.css" />
+
+    <!-- Nav -->
+    <link rel="stylesheet" href="../../../css/nav/nav.css" />
+
+    <!-- Content -->
+    <link rel="stylesheet" href="../../../css/content/content.css" />
+
+    <!-- Override -->
+    <link rel="stylesheet" href="../../../css/override/override.css" />
+
+    <!-- Logo -->
+    <link rel="stylesheet" href="../../../css/logo/logo.css" />
+
+    <!-- Footer -->
+    <link rel="stylesheet" href="../../../css/footer/footer.css" />
+
+    <script src="../../../assets/javascripts/modernizr.74668098.js"></script>
+
+    <!-- MathJax -->
+    <link rel="stylesheet" href="../../../css/mathjax/mathjax.css" />
+
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            jax: ["input/TeX", "output/HTML-CSS"],
+            text2jax: {
+                inlineMath: [ ['$', '$'], ["\\(", "\\)"] ],
+                displayMath: [ ['$$', '$$'], ["\\[", "\\]"] ],
+                processEscapes: true
+            },
+            messageStyle: "none"
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML&locale=ru" async></script>
+
+    <!-- Magnific Popup -->
+    <link rel="stylesheet" href="../../../libs/magnific-popup/magnific-popup.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../../../libs/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+    <script>
+        $(function ()
+        {
+            $('.md-content a > img').each(function (i, elem)
+            {
+                $(this).parent().addClass('img-link');
+            });
+
+            $('.img-link').magnificPopup({type: 'image'});
+        });
+    </script>
+<link href="https://fonts.gstatic.com" rel="preconnect" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=swap"><style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style><link rel="stylesheet" href="../../../assets/fonts/material-icons.css"><script>window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-139869648-1", "auto")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })</script><script async src="https://www.google-analytics.com/analytics.js"></script></head><body dir="ltr" data-md-color-primary="white" data-md-color-accent="blue"><svg class="md-svg"><defs><svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg></defs></svg> <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off"> <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off"> <label class="md-overlay" data-md-component="overlay" for="__drawer"></label><a href="#структура-мода" tabindex="1" class="md-skip">Перейти к содержанию </a><header class="md-header" data-md-component="header"><nav class="md-header-nav md-grid"><div class="md-flex"><div class="md-flex__cell md-flex__cell--shrink"><a href="https://mcmodding.ru" title="MC Modding Учебник" class="md-header-nav__button md-logo"><img src="../../../logo.svg" width="24" height="24"></a></div><div class="md-flex__cell md-flex__cell--shrink"><label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label></div><div class="md-flex__cell md-flex__cell--stretch"><div class="md-flex__ellipsis md-header-nav__title" data-md-component="title"><span class="md-header-nav__topic">MC Modding Учебник</span><span class="md-header-nav__topic">Структура мода</span></div></div><div class="md-flex__cell md-flex__cell--shrink"><label class="md-icon md-icon--search md-header-nav__button" for="__search"></label><div class="md-search" data-md-component="search" role="dialog"><label class="md-search__overlay" for="__search"></label><div class="md-search__inner" role="search"><form class="md-search__form" name="search"><input type="text" class="md-search__input" name="query" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active"> <label class="md-icon md-search__icon" for="__search"></label> <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">&#xE5CD;</button></form><div class="md-search__output"><div class="md-search__scrollwrap" data-md-scrollfix><div class="md-search-result" data-md-component="result"><div class="md-search-result__meta">Начните печатать для поиска</div><ol class="md-search-result__list"></ol></div></div></div></div></div></div><div class="md-flex__cell md-flex__cell--shrink"><div class="md-header-nav__source"><a href="https://github.com/mc-modding/book/" title="Перейти к репозиторию" class="md-source" data-md-source="github"><div class="md-source__icon"><svg viewBox="0 0 24 24" width="24" height="24"><use xlink:href="#__github" width="24" height="24"></use></svg></div><div class="md-source__repository">mc-modding/book</div></a></div></div></div></nav></header><div class="md-container"><main class="md-main"><div class="md-main__inner md-grid" data-md-component="container"><div class="md-sidebar md-sidebar--primary" data-md-component="navigation"><div class="md-sidebar__scrollwrap"><div class="md-sidebar__inner"><!-- Main navigation -->
+<nav class="md-nav md-nav--primary" data-md-level="0">
+
+    <!-- Site title -->
+    <label class="md-nav__title md-nav__title--site" for="__drawer">
+        <a href="https://mcmodding.ru" title="MC Modding Учебник"
+            class="md-nav__button md-logo">
+            
+            <img src="../../../logo.svg" width="48" height="48" />
+            
+        </a>
+        <span class="site-name">MC Modding Учебник</span>
+    </label>
+
+    <ul class="md-nav__list nav-links">
+        
+        <li class="md-nav__item">
+            <a href="https://forum.mcmodding.ru/forums/%D0%92%D0%BE%D0%BF%D1%80%D0%BE%D1%81%D1%8B.23/" target="_blank" title="Задать вопрос" class="md-nav__link">
+                <i class="far fa-question-circle"></i>
+                Задать вопрос
+            </a>
+        </li>
+        
+        <li class="md-nav__item">
+            <a href="https://forum.mcmodding.ru" target="_blank" title="Форум" class="md-nav__link">
+                <i class="far fa-comments"></i>
+                Форум
+            </a>
+        </li>
+        
+        <li class="md-nav__item">
+            <a href="../../../editing-book/" target="_blank" title="Как внести вклад?" class="md-nav__link">
+                <i class="far fa-edit"></i>
+                Как внести вклад?
+            </a>
+        </li>
+        
+    </ul>
+
+    <!-- Render item list -->
+    <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        
+        <li class="md-nav__item md-nav__item--active md-nav__item--nested"><input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" checked><label class="md-nav__link" for="nav-1">1.12</label><nav class="md-nav" data-md-component="collapsible" data-md-level="1"><label class="md-nav__title" for="nav-1">1.12</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item md-nav__item--nested"><input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-1" type="checkbox" id="nav-1-1"><label class="md-nav__link" for="nav-1-1">Подготовка</label><nav class="md-nav" data-md-component="collapsible" data-md-level="2"><label class="md-nav__title" for="nav-1-1">Подготовка</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="../../preparation/install/" title="Установка программ" class="md-nav__link">Установка программ</a></li><li class="md-nav__item"><a href="../../preparation/setup-idea/" title="Использование Idea" class="md-nav__link">Использование Idea</a></li><li class="md-nav__item"><a href="../../preparation/setup-eclipse/" title="Использование Eclipse" class="md-nav__link">Использование Eclipse</a></li><li class="md-nav__item"><a href="../../preparation/custom-skin/" title="Собственный скин" class="md-nav__link">Собственный скин</a></li><li class="md-nav__item"><a href="../../preparation/problems/" title="Решение проблем" class="md-nav__link">Решение проблем</a></li></ul></nav></li><li class="md-nav__item md-nav__item--active md-nav__item--nested"><input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-2" type="checkbox" id="nav-1-2" checked><label class="md-nav__link" for="nav-1-2">Основы Forge</label><nav class="md-nav" data-md-component="collapsible" data-md-level="2"><label class="md-nav__title" for="nav-1-2">Основы Forge</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item md-nav__item--active"><input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc"><label class="md-nav__link md-nav__link--active" for="__toc">Структура мода</label><a href="./" title="Структура мода" class="md-nav__link md-nav__link--active">Структура мода</a><nav class="md-nav md-nav--secondary"><label class="md-nav__title" for="__toc">Содержание</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="#для-eclipse" title="Для Eclipse" class="md-nav__link">Для Eclipse</a></li><li class="md-nav__item"><a href="#смысл-папок" title="Смысл папок" class="md-nav__link">Смысл папок</a></li><li class="md-nav__item"><a href="#mcmodinfo" title="mcmod.info" class="md-nav__link">mcmod.info</a></li><li class="md-nav__item"><a href="#главный-файл-мода" title="Главный файл мода" class="md-nav__link">Главный файл мода</a></li><li class="md-nav__item"><a href="#итог" title="Итог" class="md-nav__link">Итог</a></li></ul></nav></li><li class="md-nav__item"><a href="../mod-annotation/" title="Аннотация @Mod" class="md-nav__link">Аннотация @Mod</a></li><li class="md-nav__item"><a href="../loading-stages/" title="Стадии загрузки мода" class="md-nav__link">Стадии загрузки мода</a></li><li class="md-nav__item"><a href="../proxy/" title="Прокси" class="md-nav__link">Прокси</a></li><li class="md-nav__item"><a href="../building-mod/" title="Сборка мода" class="md-nav__link">Сборка мода</a></li></ul></nav></li><li class="md-nav__item md-nav__item--nested"><input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-3" type="checkbox" id="nav-1-3"><label class="md-nav__link" for="nav-1-3">Предмет</label><nav class="md-nav" data-md-component="collapsible" data-md-level="2"><label class="md-nav__title" for="nav-1-3">Предмет</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="../../item/basics/" title="Создание предмета" class="md-nav__link">Создание предмета</a></li><li class="md-nav__item"><a href="../../item/food/" title="Еда" class="md-nav__link">Еда</a></li><li class="md-nav__item"><a href="../../item/tools/" title="Инструменты и меч" class="md-nav__link">Инструменты и меч</a></li><li class="md-nav__item"><a href="../../item/repair/" title="Починка инструментов" class="md-nav__link">Починка инструментов</a></li><li class="md-nav__item"><a href="../../item/armor/" title="Броня" class="md-nav__link">Броня</a></li><li class="md-nav__item"><a href="../../item/metadata/" title="Метадата" class="md-nav__link">Метадата</a></li><li class="md-nav__item"><a href="../../item/loot/" title="Лут" class="md-nav__link">Лут</a></li><li class="md-nav__item"><a href="../../item/rarity/" title="Редкость" class="md-nav__link">Редкость</a></li><li class="md-nav__item"><a href="../../item/burn/" title="Горение" class="md-nav__link">Горение</a></li></ul></nav></li><li class="md-nav__item md-nav__item--nested"><input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-4" type="checkbox" id="nav-1-4"><label class="md-nav__link" for="nav-1-4">Блок</label><nav class="md-nav" data-md-component="collapsible" data-md-level="2"><label class="md-nav__title" for="nav-1-4">Блок</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="../../block/basics/" title="Создание блока" class="md-nav__link">Создание блока</a></li><li class="md-nav__item"><a href="../../block/blockstates/" title="Состояния блока" class="md-nav__link">Состояния блока</a></li></ul></nav></li><li class="md-nav__item"><a href="../../tileentity/" title="Tile Entity" class="md-nav__link">Tile Entity</a></li><li class="md-nav__item"><a href="../../creativetab/" title="Вкладка в креативе" class="md-nav__link">Вкладка в креативе</a></li><li class="md-nav__item"><a href="../../lang/" title="Локализация" class="md-nav__link">Локализация</a></li><li class="md-nav__item md-nav__item--nested"><input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-8" type="checkbox" id="nav-1-8"><label class="md-nav__link" for="nav-1-8">События</label><nav class="md-nav" data-md-component="collapsible" data-md-level="2"><label class="md-nav__title" for="nav-1-8">События</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="../../events/usage/" title="Использование событий" class="md-nav__link">Использование событий</a></li><li class="md-nav__item"><a href="../../events/table/" title="Таблица событий" class="md-nav__link">Таблица событий</a></li></ul></nav></li><li class="md-nav__item"><a href="../../craft/" title="Крафт" class="md-nav__link">Крафт</a></li><li class="md-nav__item md-nav__item--nested"><input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-10" type="checkbox" id="nav-1-10"><label class="md-nav__link" for="nav-1-10">Достижения</label><nav class="md-nav" data-md-component="collapsible" data-md-level="2"><label class="md-nav__title" for="nav-1-10">Достижения</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="../../achievements/basics/" title="Основы" class="md-nav__link">Основы</a></li><li class="md-nav__item"><a href="../../achievements/create/" title="Создание достижения" class="md-nav__link">Создание достижения</a></li><li class="md-nav__item"><a href="../../achievements/recipes/" title="Получение рецептов" class="md-nav__link">Получение рецептов</a></li></ul></nav></li><li class="md-nav__item md-nav__item--nested"><input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-11" type="checkbox" id="nav-1-11"><label class="md-nav__link" for="nav-1-11">Растение</label><nav class="md-nav" data-md-component="collapsible" data-md-level="2"><label class="md-nav__title" for="nav-1-11">Растение</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="../../plant/basics/" title="Создание растения" class="md-nav__link">Создание растения</a></li><li class="md-nav__item"><a href="../../plant/mod-cave-plants/" title="[Мод] Пещерные растения" class="md-nav__link">[Мод] Пещерные растения</a></li></ul></nav></li><li class="md-nav__item md-nav__item--nested"><input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-12" type="checkbox" id="nav-1-12"><label class="md-nav__link" for="nav-1-12">Для опытных</label><nav class="md-nav" data-md-component="collapsible" data-md-level="2"><label class="md-nav__title" for="nav-1-12">Для опытных</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="../../advanced/layers/" title="Слои" class="md-nav__link">Слои</a></li><li class="md-nav__item"><a href="../../advanced/keybinds/" title="Привязка клавиш" class="md-nav__link">Привязка клавиш</a></li><li class="md-nav__item"><a href="../../advanced/buffs/" title="Временные эффекты" class="md-nav__link">Временные эффекты</a></li><li class="md-nav__item"><a href="../../advanced/sounds/" title="Звуки" class="md-nav__link">Звуки</a></li></ul></nav></li><li class="md-nav__item md-nav__item--nested"><input class="md-toggle md-nav__toggle" data-md-toggle="nav-1-13" type="checkbox" id="nav-1-13"><label class="md-nav__link" for="nav-1-13">Дополнительно</label><nav class="md-nav" data-md-component="collapsible" data-md-level="2"><label class="md-nav__title" for="nav-1-13">Дополнительно</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="../../other/src/" title="Работа с иходниками" class="md-nav__link">Работа с иходниками</a></li><li class="md-nav__item"><a href="../../other/jei-integration/" title="Интеграция с JEI" class="md-nav__link">Интеграция с JEI</a></li><li class="md-nav__item"><a href="../../other/access-transformers/" title="Access Transformers" class="md-nav__link">Access Transformers</a></li><li class="md-nav__item"><a href="../../other/gen-lags/" title="Каскадная генерация" class="md-nav__link">Каскадная генерация</a></li></ul></nav></li></ul></nav></li>
+        
+    </ul>
+</nav></div></div></div><div class="md-sidebar md-sidebar--secondary" data-md-component="toc"><div class="md-sidebar__scrollwrap"><div class="md-sidebar__inner"><nav class="md-nav md-nav--secondary"><label class="md-nav__title" for="__toc">Содержание</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="#для-eclipse" title="Для Eclipse" class="md-nav__link">Для Eclipse</a></li><li class="md-nav__item"><a href="#смысл-папок" title="Смысл папок" class="md-nav__link">Смысл папок</a></li><li class="md-nav__item"><a href="#mcmodinfo" title="mcmod.info" class="md-nav__link">mcmod.info</a></li><li class="md-nav__item"><a href="#главный-файл-мода" title="Главный файл мода" class="md-nav__link">Главный файл мода</a></li><li class="md-nav__item"><a href="#итог" title="Итог" class="md-nav__link">Итог</a></li></ul></nav></div></div></div><div class="md-content"><article class="md-content__inner md-typeset">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- [MC Modding Book] Перед статьей -->
+    <ins class="adsbygoogle top"
+        style="display:block"
+        data-ad-client="ca-pub-8094912170389944"
+        data-ad-slot="2360317416"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <a href="https://github.com/mc-modding/book/edit/master/docs/1.12/basics/mod-structure/index.md" title="Редактировать страницу" class="md-icon md-content__icon">&#xE3C9;</a><h1 id="структура-мода">Структура мода<a class="headerlink" href="#структура-мода" title="Permanent link">#</a></h1>
+<p>Так как используемое нами Forge API использует автоматический сборщик Gradle, то мы должны придерживаться определенной
+структуры папок.</p>
+<div class="codehilite"><pre><span></span>└── src    
+    └── main
+        ├── java
+        └── resources
+</pre></div>
+
+<p>Создайте папку "src" и остальные в нашей рабочей директории, где мы ранее распаковывали архив MDK. Idea автоматически
+узнает названия папок и присвоит им нужное значение.</p>
+<h4 id="для-eclipse">Для Eclipse<a class="headerlink" href="#для-eclipse" title="Permanent link">#</a></h4>
+<p>Если вы используете Eclipse, то вам нужно пометить "src/main/java" и "src/main/resources" как "Source Folder" (папка исходников).</p>
+<p>Это можно сделать двумя разными способами:</p>
+<ol>
+<li>Создать эти папки через ПКМ &gt; New &gt; Source Folder</li>
+<li>Выделить уже созданные папки "java" и "resources" и ПКМ &gt; Build Path &gt; Use as Source Folder</li>
+</ol>
+<h4 id="смысл-папок">Смысл папок<a class="headerlink" href="#смысл-папок" title="Permanent link">#</a></h4>
+<p>"src" в полном варианте пишется source и переводится как "Источники/Исходники".</p>
+<p>Весь наш мод будет находится внутри этой папки.</p>
+<p>Далее идет "main", внутри которого находятся две папки: "java" и "resources".</p>
+<ul>
+<li>В "java" хранится исходный код нашего мода</li>
+<li>В "resources" хранятся все остальные доп. файлы: картинки, звуки, модели и так далее</li>
+</ul>
+<h2 id="mcmodinfo">mcmod.info<a class="headerlink" href="#mcmodinfo" title="Permanent link">#</a></h2>
+<p>Создадим в папке "resources" файл <code>mcmod.info</code>.</p>
+<p>Этот файл определяет метаданные нашего мода: идентификатор, название, авторов, зависимости и так далее.
+Это обычный JSON файл, хотя он и имеет расширение <code>.info</code>.</p>
+<p>Минимально правильный mcmod.info файл должен содержать следующее:</p>
+<div class="codehilite"><pre><span></span><span class="p">[</span>
+<span class="p">{</span>
+  <span class="nt">&quot;modid&quot;</span><span class="p">:</span> <span class="s2">&quot;tut&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Tutorial mod&quot;</span>
+<span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+
+<p>Где <code>modid</code> — идентификатор мода. Не используйте заглавные буквы, пробелы, подчеркивания и т.д. Только английские буквы
+в нижнем регистре.</p>
+<p>Параметр <code>name</code> отвечает за красивое название вашего мода. Тут можно использовать все, что угодно. Работать будут и <a href="http://minecraft.gamepedia.com/Formatting_codes">коды
+форматирования текста</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>modid</td>
+<td>Идентификатор мода</td>
+</tr>
+<tr>
+<td>name</td>
+<td>Название мода</td>
+</tr>
+<tr>
+<td>description</td>
+<td>Описание мода в 1-2 абзаца</td>
+</tr>
+<tr>
+<td>version</td>
+<td>Версия мода</td>
+</tr>
+<tr>
+<td>mcversion</td>
+<td>Версия Minecraft</td>
+</tr>
+<tr>
+<td>url</td>
+<td>Ссылка на сайт мода</td>
+</tr>
+<tr>
+<td>updateJSON</td>
+<td>Ссылка на JSON файл с данными обновлений мода</td>
+</tr>
+<tr>
+<td>authorList</td>
+<td>Массив имен авторов</td>
+</tr>
+<tr>
+<td>credits</td>
+<td>Строка с выражением благодарности кому-то</td>
+</tr>
+<tr>
+<td>logoFile</td>
+<td>Путь к логотипу мода</td>
+</tr>
+<tr>
+<td>screenshots</td>
+<td>Массив путей к скриншотам мода. В данный момент не поддерживается</td>
+</tr>
+<tr>
+<td>parent</td>
+<td>modid родительского мода</td>
+</tr>
+<tr>
+<td>useDependencyInformation</td>
+<td>Если true, то следующие три параметра будут учитываться</td>
+</tr>
+<tr>
+<td>requiredMods</td>
+<td>Массив modid модов, которые требуются для работы данного мода. Если данные моды не установлены, то будет краш игры. Данный параметр не указывает <strong>порядок</strong> загрузки модов. Используйте для этой цели параметр dependencies</td>
+</tr>
+<tr>
+<td>dependencies</td>
+<td>Массив modid модов, которые должны быть загружены <strong>до</strong> загрузки данного мода</td>
+</tr>
+<tr>
+<td>dependants</td>
+<td>Массив modid модов, которые должны быть загружены <strong>после</strong> загрузки данного мода</td>
+</tr>
+</tbody>
+</table>
+<p>Вот пример умеренно заполненного файла:</p>
+<div class="codehilite"><pre><span></span><span class="p">[{</span>
+  <span class="nt">&quot;modid&quot;</span><span class="p">:</span> <span class="s2">&quot;tut&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Tutorial Mod&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;This is my SUPER Test Mod. Like it!&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;1.0.0.0&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;mcversion&quot;</span><span class="p">:</span> <span class="s2">&quot;1.12+&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;mcmodding.ru/&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;authorList&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Ivasik&quot;</span><span class="p">,</span> <span class="s2">&quot;Someone else&quot;</span><span class="p">],</span>
+  <span class="nt">&quot;credits&quot;</span><span class="p">:</span> <span class="s2">&quot;I&#39;d like to thank my mother and father.&quot;</span>
+<span class="p">}]</span>
+</pre></div>
+
+<p>Более подробно о настройке этого файла вы можете прочитать в отдельной статье. Рекомендую обязательно выделить время для этого,
+так как там есть несколько полезных хитростей.</p>
+<h2 id="главный-файл-мода">Главный файл мода<a class="headerlink" href="#главный-файл-мода" title="Permanent link">#</a></h2>
+<p>В предыдущем разделе мы создали файл <code>mcmod.info</code>. Но игра все еще не распознает наш мод, в чем можно убедиться, запустив
+клиент. Вы не найдете свой мод в списке установленных модов. Для того, чтобы все заработало, нам нужно создать главный файл мода.</p>
+<p>В папке "java" создайте базовый пакет вашего мода. Если у вас уже есть домен для вашего мода, то отличным названием для
+пакета будет что-то вроде <code>ru.ivasik.tutorial</code>. Если домена у вас нет, вполне подойдет использование вашего никнейма, как
+название пакета верхнего уровня: <code>ivasik.tutorial</code>.</p>
+<p>В моем случае пакет будет называться так: <code>ru.ivasik.tutorial</code>.</p>
+<p>Теперь создадим в нем файл <code>TestMod.java</code>. Это и будет главным файлом нашего мода.</p>
+<p>Для того, чтобы Forge понял, что данный файл действительно является главным, мы должны добавить к определению класса
+аннотацию <code>@Mod</code>:</p>
+<div class="codehilite"><pre><span></span><span class="c1">// TestMod.java</span>
+
+<span class="kn">package</span> <span class="nn">ru.mcmodding.testmod</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">net.minecraftforge.fml.common.Mod</span><span class="o">;</span>
+
+<span class="nd">@Mod</span><span class="o">(</span><span class="n">modid</span> <span class="o">=</span> <span class="s">&quot;tut&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Tutorial</span> <span class="o">{}</span>
+</pre></div>
+
+<p>Естественно, что поле <code>modid</code> в аннотации должно быть равно <code>modid</code> в <code>mcmod.info</code>. В противном случае мод будет распознан,
+но выведет сообщение о том, что <code>mcmod.info</code> не найден. Впрочем, на работу мода это никак не повлияет.</p>
+<p>Разбору полей аннотации <code>@Mod</code> посвящена отдельная статья.</p>
+<h2 id="итог">Итог<a class="headerlink" href="#итог" title="Permanent link">#</a></h2>
+<p>Мы создали базовую структуру любого мода для Minecraft. Выглядит она следующим образом:</p>
+<div class="codehilite"><pre><span></span>└── src    
+    └── main
+        ├── java
+        │   └── пакет.мода
+        │       └── ФайлМода.java
+        └── resources
+            └── mcmod.info
+</pre></div>
+
+    <!-- Contributors -->
+    <div class="contributors" style="display: none;">
+        <h2 id="contributors">Вклад внесли <span class="contributors--count">0</span></h2>
+        <ul class="contributors--list"></ul>
+    </div>
+
+    <script>
+        $(function ()
+        {
+            var editUrl = 'https://github.com/mc-modding/book/edit/master/docs/1.12/basics/mod-structure/index.md';
+            var fpath = editUrl.split('https://github.com/mc-modding/book/edit/master/').pop();
+
+            var already = [];
+
+            fetch('https://api.github.com/repos/mc-modding/book/commits?path=' + fpath).then(function (response)
+            {
+                return response.json();
+            }).then(function (commits)
+            {
+                for (var i = 0; i < commits.length; i++)
+                {
+                    var author = commits[i].author;
+
+                    if (already.includes(author.login))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        already.push(author.login);
+                    }
+
+                    var url = 'https://github.com/mc-modding/book/commits/master/' + fpath + '?author=' + author.login;
+
+                    $('.contributors--list').append('<li><a title="' + author.login + '" href="' + url + '" target="_blank"><img src="' + author.avatar_url + '&s=40" /></a></li>');
+                }
+
+                $('.contributors--count').html(already.length);
+
+                if (already.length > 0)
+                {
+                    $('.contributors').show();
+                }
+            });
+        });
+    </script>
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- [MC Modding Book] После статьи -->
+    <ins class="adsbygoogle bottom"
+        style="display:block"
+        data-ad-client="ca-pub-8094912170389944"
+        data-ad-slot="8790828549"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</article></div></div></main>
+
+<!-- Application footer -->
+<footer class="md-footer">
+
+    <!-- Link to previous and/or next page -->
+    
+    <div class="md-footer-nav">
+        <nav class="md-footer-nav__inner md-grid">
+
+            <!-- Link to previous page -->
+            
+            <a href="../../preparation/problems/" title="Решение проблем"
+                class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+                <div class="md-flex__cell md-flex__cell--shrink">
+                    <i class="md-icon md-icon--arrow-back
+                    md-footer-nav__button"></i>
+                </div>
+                <div class="md-flex__cell md-flex__cell--stretch
+                  md-footer-nav__title">
+                    <span class="md-flex__ellipsis">
+                        <span class="md-footer-nav__direction">
+                            Назад
+                        </span>
+                        Решение проблем
+                    </span>
+                </div>
+            </a>
+            
+
+            <!-- Link to next page -->
+            
+            <a href="../mod-annotation/" title="Аннотация @Mod"
+                class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+                <div class="md-flex__cell md-flex__cell--stretch
+                  md-footer-nav__title">
+                    <span class="md-flex__ellipsis">
+                        <span class="md-footer-nav__direction">
+                            Вперед
+                        </span>
+                        Аннотация @Mod
+                    </span>
+                </div>
+                <div class="md-flex__cell md-flex__cell--shrink">
+                    <i class="md-icon md-icon--arrow-forward
+                    md-footer-nav__button"></i>
+                </div>
+            </a>
+            
+        </nav>
+    </div>
+    
+</footer>
+
+<!-- Counters -->
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+ 
+    ym(21621697, "init", {
+         clickmap:true,
+         trackLinks:true,
+         accurateTrackBounce:true
+    });
+ </script>
+ <noscript><div><img src="https://mc.yandex.ru/watch/21621697" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+ <!-- /Yandex.Metrika counter --></div><script src="../../../assets/javascripts/application.b260a35d.js"></script><script src="../../../assets/javascripts/lunr/lunr.stemmer.support.js"></script><script src="../../../assets/javascripts/lunr/lunr.ru.js"></script><script src="../../../assets/javascripts/lunr/lunr.multi.js"></script><script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script></body></html>
